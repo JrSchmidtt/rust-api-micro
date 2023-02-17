@@ -1,0 +1,8 @@
+# Rust binary, build and dependency files
+target/
+Cargo.lock
+*.rs.bk
+
+# Rust editor configuration files
+.idea/
+.vscode/
