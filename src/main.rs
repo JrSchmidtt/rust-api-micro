@@ -1,7 +1,12 @@
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
 // Import the `json` macro from the `rocket` crate.
 use rocket::serde::json::{json, Value};
+
+// Import the `get_user` function from the `user` module
+mod user;
+use user::get_user;
 
 #[get("/")]
 fn ping() -> Value {
@@ -12,16 +17,7 @@ fn ping() -> Value {
     })
 }
 
-#[get("/user")]
-fn user() -> Value {
-    json!({
-        "name": "John Doe",
-        "email": "user@server.com",
-        "age": 42,
-    })
-}
-
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![ping, user])
+    rocket::build().mount("/", routes![ping, get_user])
 }
